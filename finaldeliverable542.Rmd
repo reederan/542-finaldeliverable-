@@ -1,0 +1,160 @@
+---
+title: "Deliverable 3"
+output: html_notebook
+---
+
+Loading in the data
+```{r}
+rm(list = ls())
+library(rio)
+
+location ='https://github.com/reederan/542-finaldeliverable-/raw/main/'
+file ='seattleTop.csv'
+delivdata = paste0(location,file)
+
+delivdata2 = read.csv(delivdata)
+
+```
+
+Checking the dimensions of the data frame to create a matrix
+```{r}
+dim(delivdata2)
+
+names(delivdata2)
+
+row.names(delivdata2)=delivdata2$name
+delivdata2$name=NULL
+
+dim(delivdata2)
+```
+
+Converting into matrix
+```{r}
+delivdata_mx=as.matrix(delivdata2) 
+```
+
+Creating a network
+```{r}
+
+library(igraph)
+
+EliteNet=graph.adjacency(delivdata_mx,mode="undirected",weighted=NULL)
+
+```
+
+Identifying how many vertices the network has
+```{r}
+vcount(EliteNet)
+```
+
+Identifying how many edges the network has
+```{r}
+ecount(EliteNet)
+```
+
+looking at the network
+```{r}
+plot.igraph(EliteNet,
+            vertex.color = 'yellow',
+            edge.color='lightblue')
+```
+
+Seeing if network is connected
+```{r}
+is_connected(EliteNet)
+```
+
+looking at the giant component (do i need to do this part since the network is connected?????)
+```{r}
+EliteNet_giant=CINNA::giant_component_extract(EliteNet,directed = F)[[1]]
+
+plot.igraph(EliteNet_giant)
+
+summary(EliteNet_giant)
+```
+
+looking at the graph density
+```{r}
+graph.density(EliteNet_giant)
+```
+
+```{r}
+diameter(EliteNet_giant)
+```
+
+```{r}
+farthest_vertices(EliteNet_giant)
+```
+
+```{r}
+average.path.length(EliteNet_giant)
+```
+
+checking transitivity
+```{r}
+transitivity(EliteNet_giant)
+```
+
+```{r}
+assortativity_degree(EliteNet_giant)
+```
+
+```{r}
+rounding=3
+degr=round(degree(EliteNet_giant,normalized=T),rounding)
+close=round(closeness(EliteNet_giant,normalized=T),rounding)
+betw=round(betweenness(EliteNet_giant,normalized=T),rounding)
+eigv=round(eigen_centrality (EliteNet_giant,scale=F)$vector,rounding)
+
+DFCentrality=as.data.frame(cbind(close,betw,eigv),stringsAsFactors = F)
+names(DFCentrality)=c('Closeness','Betweenness','Eigenvector')
+```
+
+```{r}
+DFCentrality$person=row.names(DFCentrality)
+row.names(DFCentrality)=NULL
+head(DFCentrality)
+```
+
+```{r}
+library(ggplot2)
+ggplot(DFCentrality, aes(x=Betweenness, y=Closeness)) + 
+    theme_classic() +
+    geom_text(aes(label=person,color=Eigenvector)) +
+    scale_colour_gradient(low = "orange", high = "black")
+```
+
+```{r}
+vertex_connectivity(EliteNet_giant)
+```
+
+```{r}
+(TheCut=articulation_points(EliteNet_giant))
+```
+
+```{r}
+(TheBridge=bridges(EliteNet_giant))
+```
+
+```{r}
+allSizes=rep(10,vcount(EliteNet_giant))
+allSizes[TheCut]=40
+V(EliteNet_giant)$size=allSizes 
+plot.igraph(EliteNet_giant,layout = layout.fruchterman.reingold,
+             vertex.color = 'yellow',
+             edge.color='lightblue',vertex.shape='sphere')
+```
+
+```{r}
+E(EliteNet_giant)$color=ifelse(E(EliteNet_giant)==TheBridge,
+                               'red','grey80')
+                               
+plot.igraph(EliteNet_giant,layout = layout.fruchterman.reingold,
+             vertex.color = 'yellow',
+             edge.color=E(EliteNet_giant)$color,vertex.shape='sphere')
+```
+
+```{r}
+write_graph(EliteNet, "EliteNetR.graphml", "graphml")
+```
+
