@@ -1,9 +1,11 @@
 ---
 title: "Deliverable 3"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-Loading in the data
+- Loading in the data - 
 ```{r}
 rm(list = ls())
 library(rio)
@@ -16,7 +18,7 @@ delivdata2 = read.csv(delivdata)
 
 ```
 
-Checking the dimensions of the data frame to create a matrix
+- Checking the dimensions of the data frame to create a matrix -
 ```{r}
 dim(delivdata2)
 
@@ -28,83 +30,81 @@ delivdata2$name=NULL
 dim(delivdata2)
 ```
 
-Converting into matrix
+- Converting into matrix -
 ```{r}
 delivdata_mx=as.matrix(delivdata2) 
 ```
 
-Creating a network
-```{r}
-
+- Creating a network -
+```{r, message = FALSE}
 library(igraph)
 
 EliteNet=graph.adjacency(delivdata_mx,mode="undirected",weighted=NULL)
 
 ```
 
-Identifying how many vertices the network has
+- Identifying how many vertices the network has -
 ```{r}
 vcount(EliteNet)
 ```
 46 vertices were found.
 
-Identifying how many edges the network has
+- Identifying how many edges the network has -
 ```{r}
 ecount(EliteNet)
 ```
 393 edges were found.
 
-looking at the network
+- looking at the network -
 ```{r}
 plot.igraph(EliteNet,
             vertex.color = 'yellow',
             edge.color='lightblue')
 ```
 
-Seeing if network is connected:
+- Seeing if network is connected -
 ```{r}
 is_connected(EliteNet)
 ```
 Network is connected meaning that every node can reach any other node. 
 
-
-looking at the graph density
+- looking at the graph density -
 ```{r}
 graph.density(EliteNet)
 ```
 The graph density was .38. a density of 1 indicates that there is a link between every pair of nodes. In this case, a score of .38 indicates that there is not a link between every pair of nodes and on a scale of 0-1 this is on the lower end.
 
-Calculating the diameter
+- Calculating the diameter -
 ```{r}
 diameter(EliteNet)
 ```
 The diameter was 3 indicating that the maximum geodesic in this case is 3. This means that in the worst case scenario someone would have 3 edges to go through to reach someone. 
 
-Calculating furthest vertices
+- Calculating furthest vertices -
 ```{r}
 farthest_vertices(EliteNet)
 ```
 these 2 individuals with the furthest geodesic are Hunt Walker and Matt Mcilwain
 
-Calculating average shortest path length
+- Calculating average shortest path length -
 ```{r}
 average.path.length(EliteNet)
 ```
 The average shortest geodesic is 1.633816
 
-checking transitivity
+- checking transitivity -
 ```{r}
 transitivity(EliteNet)
 ```
 This indicates how probable it is that two vertices with a common vertex, are also connected. For this network it is .55.
 
-Calculating assortativity
+- Calculating assortativity -
 ```{r}
 assortativity_degree(EliteNet)
 ```
 assortativity was -.25 indicating diassortativity nodes are not connecting to other nodes in similar degree. 
 
-Exploring network actors: degree, closeness, betweenness and eigenvector
+- Exploring network actors: degree, closeness, betweenness and eigenvector -
 ```{r}
 rounding=3
 degr=round(degree(EliteNet,normalized=T),rounding)
@@ -116,7 +116,7 @@ DFCentrality=as.data.frame(cbind(close,betw,eigv),stringsAsFactors = F)
 names(DFCentrality)=c('Closeness','Betweenness','Eigenvector')
 ```
 
-producing a dataframe to explore the actors using the above dimensions
+- Producing a dataframe to explore the actors using the above dimensions -
 ```{r}
 DFCentrality$person=row.names(DFCentrality)
 row.names(DFCentrality)=NULL
@@ -124,7 +124,7 @@ head(DFCentrality)
 ```
 In this case, Todd Bishop has the highest closeness meaning he can share information faster than the rest, he also has the highest betweenness and eigenvector meaning he is critical for connecting others and he is the most influential. The person with the lowest scores is Matt Mcilwain, meaning he is slowest at sharing information, isn't critical, and is the least influential.
 
-creating a visual to further explore the actors along those dimensions
+- Creating a visual to further explore the actors along those dimensions -
 ```{r}
 library(ggplot2)
 ggplot(DFCentrality, aes(x=Betweenness, y=Closeness)) + 
@@ -132,21 +132,22 @@ ggplot(DFCentrality, aes(x=Betweenness, y=Closeness)) +
     geom_text(aes(label=person,color=Eigenvector)) +
     scale_colour_gradient(low = "orange", high = "black")
 ```
-This visual clearly shows the importance and power of Todd Bishop.
+                    
+                    This visual clearly shows the importance and power of Todd Bishop.
 
-Calculating vertex connectivity.
+- Calculating vertex connectivity -
 ```{r}
 vertex_connectivity(EliteNet)
 ```
 Vertex connectivity was 2 indicating it would take a minimum of 2 nodes removed to disconnect the network.
 
-Seeing if there are any bridges in the network
+- Seeing if there are any bridges in the network -
 ```{r}
 (TheBridge=bridges(EliteNet))
 ```
 This social network does not have any bridges. This means that the network is resilient and removing one actor wont ruin the network. This also means that the power is distributed throughout, one person can't cut off another person or group. 
 
-Exporting the network for future use
+- Exporting the network for future use - 
 ```{r}
 write_graph(EliteNet, "EliteNetR.graphml", "graphml")
 ```

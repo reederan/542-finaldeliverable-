@@ -5,191 +5,144 @@
          http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 <!-- Created by igraph -->
   <key id="v_name" for="node" attr.name="name" attr.type="string"/>
-  <key id="v_size" for="node" attr.name="size" attr.type="double"/>
   <graph id="G" edgedefault="undirected">
     <node id="n0">
       <data key="v_name">rachelerman</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n1">
       <data key="v_name">mattmcilwain</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n2">
       <data key="v_name">DaveParkerSEA</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n3">
       <data key="v_name">toddbishop</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n4">
       <data key="v_name">ashannstew</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n5">
       <data key="v_name">LeslieFeinzaig</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n6">
       <data key="v_name">akipman</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n7">
       <data key="v_name">matt_oppy</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n8">
       <data key="v_name">gilbert</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n9">
       <data key="v_name">juliesandler</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n10">
       <data key="v_name">BradSmi</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n11">
       <data key="v_name">crashdev</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n12">
       <data key="v_name">ShaunaCausey</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n13">
       <data key="v_name">john_gabbert</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n14">
       <data key="v_name">moniguzman</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n15">
       <data key="v_name">mattmday</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n16">
       <data key="v_name">Rich_Barton</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n17">
       <data key="v_name">daryn</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n18">
       <data key="v_name">lovelletters</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n19">
       <data key="v_name">etzioni</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n20">
       <data key="v_name">MissDestructo</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n21">
       <data key="v_name">heatherredman</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n22">
       <data key="v_name">danshapiro</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n23">
       <data key="v_name">medinism</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n24">
       <data key="v_name">KieranSnyder</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n25">
       <data key="v_name">hadip</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n26">
       <data key="v_name">RajSinghSeattle</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n27">
       <data key="v_name">funcOfJoe</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n28">
       <data key="v_name">kirbywinfield</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n29">
       <data key="v_name">stevesi</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n30">
       <data key="v_name">Ryanintheus</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n31">
       <data key="v_name">sonalpmane</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n32">
       <data key="v_name">SoGulley</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n33">
       <data key="v_name">X2morrowknight</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n34">
       <data key="v_name">jinman</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n35">
       <data key="v_name">tarah</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n36">
       <data key="v_name">Jenerationy</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n37">
       <data key="v_name">lanctot</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n38">
       <data key="v_name">Kristen_Hammy</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n39">
       <data key="v_name">nhuntwalker</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n40">
       <data key="v_name">eugenio_pace</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n41">
       <data key="v_name">JenMsft</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n42">
       <data key="v_name">PeterHamilton</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n43">
       <data key="v_name">sarahstood</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n44">
       <data key="v_name">mcolacurcio</data>
-      <data key="v_size">10</data>
     </node>
     <node id="n45">
       <data key="v_name">marybethlambert</data>
-      <data key="v_size">10</data>
     </node>
     <edge source="n0" target="n1">
     </edge>
